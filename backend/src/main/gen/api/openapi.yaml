@@ -1,0 +1,423 @@
+openapi: 3.0.1
+info:
+  description: REST API for Health Assistance System
+  title: Health Assistance System API
+  version: "1.0"
+servers:
+- description: Generated server url
+  url: http://localhost:8080
+paths:
+  /api/health-records:
+    post:
+      operationId: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties:
+                type: object
+              type: object
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                additionalProperties:
+                  type: object
+                type: object
+          description: OK
+      tags:
+      - health-record-controller
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+  /api/auth/register:
+    post:
+      operationId: register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+          description: OK
+      tags:
+      - auth-controller
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+  /api/auth/login:
+    post:
+      operationId: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+          description: OK
+      tags:
+      - auth-controller
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+  /api/appointments:
+    get:
+      operationId: getAll_2
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                items:
+                  additionalProperties:
+                    type: object
+                  type: object
+                type: array
+          description: OK
+      tags:
+      - appointment-controller
+      x-accepts:
+      - '*/*'
+    post:
+      operationId: book
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties:
+                type: object
+              type: object
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                additionalProperties:
+                  type: object
+                type: object
+          description: OK
+      tags:
+      - appointment-controller
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+  /api/appointments/{id}/confirm:
+    patch:
+      operationId: confirm
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                additionalProperties:
+                  type: object
+                type: object
+          description: OK
+      tags:
+      - appointment-controller
+      x-accepts:
+      - '*/*'
+  /api/appointments/{id}/cancel:
+    patch:
+      operationId: cancel
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                additionalProperties:
+                  type: object
+                type: object
+          description: OK
+      tags:
+      - appointment-controller
+      x-accepts:
+      - '*/*'
+  /api/patients:
+    get:
+      operationId: getAll
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                items:
+                  additionalProperties:
+                    type: object
+                  type: object
+                type: array
+          description: OK
+      tags:
+      - patient-controller
+      x-accepts:
+      - '*/*'
+  /api/patients/{id}:
+    get:
+      operationId: getById
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                additionalProperties:
+                  type: object
+                type: object
+          description: OK
+      tags:
+      - patient-controller
+      x-accepts:
+      - '*/*'
+  /api/health-records/patient/{patientId}:
+    get:
+      operationId: getByPatient
+      parameters:
+      - explode: false
+        in: path
+        name: patientId
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                items:
+                  additionalProperties:
+                    type: object
+                  type: object
+                type: array
+          description: OK
+      tags:
+      - health-record-controller
+      x-accepts:
+      - '*/*'
+  /api/health-records/patient/{patientId}/vitals:
+    get:
+      operationId: getVitals
+      parameters:
+      - explode: false
+        in: path
+        name: patientId
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                items:
+                  additionalProperties:
+                    type: object
+                  type: object
+                type: array
+          description: OK
+      tags:
+      - health-record-controller
+      x-accepts:
+      - '*/*'
+  /api/doctors:
+    get:
+      operationId: getAll_1
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                items:
+                  additionalProperties:
+                    type: object
+                  type: object
+                type: array
+          description: OK
+      tags:
+      - doctor-controller
+      x-accepts:
+      - '*/*'
+  /api/doctors/{id}:
+    get:
+      operationId: getById_1
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                additionalProperties:
+                  type: object
+                type: object
+          description: OK
+      tags:
+      - doctor-controller
+      x-accepts:
+      - '*/*'
+  /api/appointments/upcoming:
+    get:
+      operationId: getUpcoming
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                items:
+                  additionalProperties:
+                    type: object
+                  type: object
+                type: array
+          description: OK
+      tags:
+      - appointment-controller
+      x-accepts:
+      - '*/*'
+  /api/appointments/patient/{patientId}:
+    get:
+      operationId: getByPatient_1
+      parameters:
+      - explode: false
+        in: path
+        name: patientId
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                items:
+                  additionalProperties:
+                    type: object
+                  type: object
+                type: array
+          description: OK
+      tags:
+      - appointment-controller
+      x-accepts:
+      - '*/*'
+components:
+  schemas:
+    RegisterRequest:
+      example:
+        firstName: firstName
+        lastName: lastName
+        password: password
+        genderCode: genderCode
+        address: address
+        phone: phone
+        bloodCode: bloodCode
+        dateOfBirth: dateOfBirth
+        email: email
+        username: username
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        genderCode:
+          type: string
+        dateOfBirth:
+          type: string
+        bloodCode:
+          type: string
+        address:
+          type: string
+        phone:
+          type: string
+      type: object
+    LoginResponse:
+      example:
+        role: role
+        success: true
+        fullName: fullName
+        message: message
+        userId: 0
+        token: token
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        token:
+          type: string
+        userId:
+          format: int32
+          type: integer
+        fullName:
+          type: string
+        role:
+          type: string
+      type: object
+    LoginRequest:
+      example:
+        password: password
+        email: email
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      type: object
+

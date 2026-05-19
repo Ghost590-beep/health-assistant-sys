@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.health.ui.controllers.patient.PatientDashboardController"
+            styleClass="dashboard-root">
+
+    <stylesheets>
+        <URL value="@/css/patientDashboard.css"/>
+    </stylesheets>
+
+    <!-- TOP BAR -->
+    <top>
+        <HBox styleClass="topbar" alignment="CENTER_LEFT" spacing="16">
+            <padding>
+                <Insets left="24" right="24"/>
+            </padding>
+
+            <Label text="✚ HealthAssist" styleClass="topbar-logo"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Label fx:id="welcomeLabel"
+                   styleClass="topbar-welcome"/>
+
+            <Button text="Logout"
+                    styleClass="btn-logout"
+                    onAction="#onLogout"/>
+        </HBox>
+    </top>
+
+    <!-- SIDEBAR -->
+    <left>
+        <VBox styleClass="sidebar">
+
+            <HBox alignment="CENTER_LEFT"
+                  spacing="10"
+                  style="-fx-padding: 0 16 20 16;">
+
+                <Label text="✚"
+                       style="-fx-text-fill: #00E6A0; -fx-font-size: 22px; -fx-font-weight: bold;"/>
+
+                <Label text="HealthAssist"
+                       styleClass="topbar-logo"/>
+            </HBox>
+
+            <VBox styleClass="sidebar-nav" spacing="2">
+
+                <Label text="MAIN" styleClass="nav-section"/>
+
+                <Button fx:id="navDashboard"
+                        text="⌂  Dashboard"
+                        styleClass="nav-item-btn nav-item-active-btn"
+                        onAction="#onNavDashboard"
+                        maxWidth="Infinity"/>
+
+                <Button fx:id="navAppointments"
+                        text="📅  Appointments"
+                        styleClass="nav-item-btn"
+                        onAction="#onNavAppointments"
+                        maxWidth="Infinity"/>
+
+                <Label text="HEALTH" styleClass="nav-section"/>
+
+                <Button fx:id="navRecords"
+                        text="📋  Health Records"
+                        styleClass="nav-item-btn"
+                        onAction="#onNavRecords"
+                        maxWidth="Infinity"/>
+
+                <Button fx:id="navVitals"
+                        text="🫀  Vitals Monitor"
+                        styleClass="nav-item-btn"
+                        onAction="#onNavVitals"
+                        maxWidth="Infinity"/>
+
+                <Label text="ACCOUNT" styleClass="nav-section"/>
+
+                <Button fx:id="navProfile"
+                        text="👤  Profile"
+                        styleClass="nav-item-btn"
+                        onAction="#onNavProfile"
+                        maxWidth="Infinity"/>
+
+                <Button fx:id="navNotifications"
+                        text="🔔  Notifications"
+                        styleClass="nav-item-btn"
+                        onAction="#onNavNotifications"
+                        maxWidth="Infinity"/>
+            </VBox>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <VBox style="-fx-padding: 12 16 0 16; -fx-spacing: 2;">
+                <StackPane styleClass="profile-avatar">
+                    <Label fx:id="sidebarUserName"
+                           style="-fx-text-fill: #C0C8D8; -fx-font-size: 12px; -fx-font-weight: 600;"/>
+                    <Label fx:id="sidebarUserRole"
+                           style="-fx-text-fill: #5E687D; -fx-font-size: 10px;"/>
+                    <Label styleClass="profile-avatar-text"/>
+                </StackPane>
+            </VBox>
+        </VBox>
+    </left>
+
+    <!-- CONTENT -->
+    <center>
+
+        <ScrollPane fx:id="mainScrollPane"
+                    fitToWidth="true"
+                    styleClass="content-scroll">
+
+            <VBox fx:id="dashboardContent"
+                  styleClass="dashboard-content">
+
+                <Label fx:id="patientNameLabel"
+                       styleClass="page-title"/>
+
+                <Label text="Overview of your health journey"
+                       styleClass="page-subtitle"/>
+
+                <!-- Stats -->
+                <HBox styleClass="stats-row">
+
+                    <VBox styleClass="stat-card">
+                        <Label text="APPOINTMENTS" styleClass="stat-label"/>
+                        <Label fx:id="appointmentCount"
+                               text="0"
+                               styleClass="stat-value"/>
+                    </VBox>
+
+                    <VBox styleClass="stat-card">
+                        <Label text="HEALTH RECORDS" styleClass="stat-label"/>
+                        <Label fx:id="recordCount"
+                               text="0"
+                               styleClass="stat-value"/>
+                    </VBox>
+
+                    <VBox styleClass="stat-card">
+                        <Label text="VITALS" styleClass="stat-label"/>
+                        <Label fx:id="vitalCount"
+                               text="0"
+                               styleClass="stat-value"/>
+                    </VBox>
+
+                </HBox>
+
+                <!-- MAIN GRID -->
+                <HBox spacing="20">
+
+                    <!-- LEFT COLUMN -->
+                    <VBox spacing="20" HBox.hgrow="ALWAYS">
+
+                        <!-- APPOINTMENTS -->
+                        <VBox styleClass="card"
+                              fx:id="appointmentsSection">
+
+                            <HBox alignment="CENTER_LEFT">
+
+                                <Label text="📅 Upcoming Appointments"
+                                       styleClass="card-title"/>
+
+                                <Region HBox.hgrow="ALWAYS"/>
+
+                                <Button text="+ Book"
+                                        styleClass="btn-book"
+                                        onAction="#onBookAppointment"/>
+                            </HBox>
+
+                            <TableView fx:id="appointmentsTable"
+                                       styleClass="data-table"
+                                       prefHeight="220">
+
+                                <columns>
+
+                                    <TableColumn text="Date" prefWidth="95"/>
+                                    <TableColumn text="Time" prefWidth="75"/>
+                                    <TableColumn text="Doctor" prefWidth="140"/>
+                                    <TableColumn text="Reason" prefWidth="170"/>
+                                    <TableColumn text="Status" prefWidth="110"/>
+
+                                </columns>
+                            </TableView>
+                        </VBox>
+
+                        <!-- RECORDS -->
+                        <VBox styleClass="card"
+                              fx:id="recordsSection">
+
+                            <Label text="📋 Health Records"
+                                   styleClass="card-title"/>
+
+                            <TableView fx:id="recordsTable"
+                                       styleClass="data-table"
+                                       prefHeight="220">
+
+                                <columns>
+
+                                    <TableColumn text="Date" prefWidth="130"/>
+                                    <TableColumn text="Doctor" prefWidth="140"/>
+                                    <TableColumn text="Diagnosis" prefWidth="200"/>
+                                    <TableColumn text="Prescription" prefWidth="200"/>
+
+                                </columns>
+                            </TableView>
+                        </VBox>
+                    </VBox>
+
+                    <!-- RIGHT COLUMN -->
+                    <VBox spacing="20" prefWidth="380">
+
+                        <!-- PROFILE -->
+                        <VBox styleClass="card" fx:id="profileSection">
+                            <Label text="👤 My Profile" styleClass="card-title"/>
+
+                            <VBox spacing="14" style="-fx-padding: 8 0 8 0;">
+
+                                <!-- Full Name Row -->
+                                <VBox spacing="4">
+                                    <Label text="Full Name" style="-fx-font-weight: bold; -fx-font-size: 11px; -fx-text-fill: #7C8BA3;"/>
+                                    <TextField fx:id="profileNameField"
+                                               promptText="e.g., John Doe"
+                                               styleClass="profile-input"
+                                               style="-fx-font-size: 12px; -fx-padding: 8px;"/>
+                                </VBox>
+
+                                <!-- Email Row -->
+                                <VBox spacing="4">
+                                    <Label text="Email Address" style="-fx-font-weight: bold; -fx-font-size: 11px; -fx-text-fill: #7C8BA3;"/>
+                                    <TextField fx:id="profileEmailField"
+                                               promptText="your.email@example.com"
+                                               styleClass="profile-input"
+                                               style="-fx-font-size: 12px; -fx-padding: 8px;"/>
+                                </VBox>
+
+                                <!-- Phone Row -->
+                                <VBox spacing="4">
+                                    <Label text="Phone Number" style="-fx-font-weight: bold; -fx-font-size: 11px; -fx-text-fill: #7C8BA3;"/>
+                                    <TextField fx:id="profilePhone"
+                                               promptText="+1 (555) 000-0000"
+                                               styleClass="profile-input"
+                                               style="-fx-font-size: 12px; -fx-padding: 8px;"/>
+                                </VBox>
+
+                                <!-- Address Row -->
+                                <VBox spacing="4">
+                                    <Label text="Address" style="-fx-font-weight: bold; -fx-font-size: 11px; -fx-text-fill: #7C8BA3;"/>
+                                    <TextField fx:id="profileAddress"
+                                               promptText="123 Main Street, City, State"
+                                               styleClass="profile-input"
+                                               style="-fx-font-size: 12px; -fx-padding: 8px;"/>
+                                </VBox>
+
+                                <!-- Separator -->
+                                <Separator style="-fx-padding: 4 0 4 0;"/>
+
+                                <!-- Password Section Title -->
+                                <Label text="Change Password" style="-fx-font-weight: bold; -fx-font-size: 12px; -fx-text-fill: #C0C8D8;"/>
+
+                                <!-- Old Password -->
+                                <VBox spacing="4">
+                                    <Label text="Current Password" style="-fx-font-weight: bold; -fx-font-size: 11px; -fx-text-fill: #7C8BA3;"/>
+                                    <PasswordField fx:id="profileOldPassword"
+                                                   promptText="Enter current password"
+                                                   styleClass="profile-input"
+                                                   style="-fx-font-size: 12px; -fx-padding: 8px;"/>
+                                </VBox>
+
+                                <!-- New Password -->
+                                <VBox spacing="4">
+                                    <Label text="New Password" style="-fx-font-weight: bold; -fx-font-size: 11px; -fx-text-fill: #7C8BA3;"/>
+                                    <PasswordField fx:id="profileNewPassword"
+                                                   promptText="Enter new password (min 6 chars)"
+                                                   styleClass="profile-input"
+                                                   style="-fx-font-size: 12px; -fx-padding: 8px;"/>
+                                </VBox>
+
+                                <!-- Confirm Password -->
+                                <VBox spacing="4">
+                                    <Label text="Confirm Password" style="-fx-font-weight: bold; -fx-font-size: 11px; -fx-text-fill: #7C8BA3;"/>
+                                    <PasswordField fx:id="profileConfirmPassword"
+                                                   promptText="Confirm new password"
+                                                   styleClass="profile-input"
+                                                   style="-fx-font-size: 12px; -fx-padding: 8px;"/>
+                                </VBox>
+
+                                <!-- Message Label -->
+                                <Label fx:id="profileUpdateMsg"
+                                       visible="false"
+                                       style="-fx-font-size: 11px; -fx-padding: 6px 8px; -fx-background-radius: 4; -fx-text-fill: white;"/>
+
+                                <!-- Button Row -->
+                                <HBox spacing="10">
+                                    <Button text="💾 Update Profile"
+                                            styleClass="btn-book"
+                                            onAction="#onUpdateProfile"
+                                            HBox.hgrow="ALWAYS"
+                                            style="-fx-font-size: 13px; -fx-padding: 10px;"/>
+                                    <Button text="🔐 Change Password"
+                                            styleClass="btn-book"
+                                            onAction="#onChangePassword"
+                                            HBox.hgrow="ALWAYS"
+                                            style="-fx-font-size: 13px; -fx-padding: 10px; -fx-background-color: #FF6B6B;"/>
+                                </HBox>
+                            </VBox>
+                        </VBox>
+
+                        <!-- VITALS -->
+                        <VBox styleClass="card"
+                              fx:id="vitalsSection">
+
+                            <Label text="🫀 Latest Vitals"
+                                   styleClass="card-title"/>
+
+                            <VBox fx:id="vitalsContainer"
+                                  spacing="10">
+
+                                <padding>
+                                    <Insets top="4"
+                                            right="4"
+                                            bottom="4"
+                                            left="4"/>
+                                </padding>
+                            </VBox>
+                        </VBox>
+
+                        <!-- NOTIFICATIONS -->
+                        <VBox styleClass="card"
+                              fx:id="notificationsSection">
+
+                            <Label text="🔔 Notifications"
+                                   styleClass="card-title"/>
+
+                            <ListView fx:id="notificationsList"
+                                      styleClass="notification-list"
+                                      prefHeight="200"/>
+                        </VBox>
+
+                    </VBox>
+                </HBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import java.net.URL?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.health.ui.controllers.admin.AdminDashboardController"
+            styleClass="dashboard-root">
+
+    <stylesheets>
+        <URL value="@/css/adminDashboard.css"/>
+    </stylesheets>
+
+    <top>
+        <HBox styleClass="topbar" alignment="CENTER_LEFT" spacing="16">
+            <padding><Insets left="24" right="24"/></padding>
+            <Label text="✚ HealthAssist Admin" styleClass="topbar-logo"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="welcomeLabel" styleClass="topbar-welcome"/>
+            <Button text="Logout" styleClass="btn-logout" onAction="#onLogout"/>
+        </HBox>
+    </top>
+
+    <left>
+        <VBox styleClass="sidebar">
+            <VBox styleClass="sidebar-nav" spacing="2">
+                <Label text="MAIN" styleClass="nav-section"/>
+                <Button fx:id="navDashboard" text="⌂  Dashboard" styleClass="nav-item-btn, nav-item-active-btn" onAction="#onNavDashboard" maxWidth="Infinity"/>
+                <Label text="MANAGE" styleClass="nav-section"/>
+                <Button fx:id="navUsers" text="👥  Users" styleClass="nav-item-btn" onAction="#onNavUsers" maxWidth="Infinity"/>
+                <Button fx:id="navAppointments" text="📅  Appointments" styleClass="nav-item-btn" onAction="#onNavAppointments" maxWidth="Infinity"/>
+                <Button fx:id="navDoctors" text="🩺  Doctors" styleClass="nav-item-btn" onAction="#onNavDoctors" maxWidth="Infinity"/>
+            </VBox>
+            <Region VBox.vgrow="ALWAYS"/>
+            <VBox style="-fx-padding: 12 16 0 16;">
+                <Label fx:id="sidebarUserName" style="-fx-text-fill: #C0C8D8; -fx-font-size: 12px;"/>
+                <Label fx:id="sidebarUserRole" style="-fx-text-fill: #5E687D; -fx-font-size: 10px;"/>
+            </VBox>
+        </VBox>
+    </left>
+
+    <center>
+        <ScrollPane fx:id="mainScrollPane" fitToWidth="true" styleClass="content-scroll">
+            <VBox fx:id="dashboardContent" styleClass="dashboard-content">
+
+                <Label fx:id="adminTitleLabel" styleClass="page-title"/>
+                <Label text="System overview" styleClass="page-subtitle"/>
+
+                <HBox styleClass="stats-row">
+                    <VBox styleClass="stat-card">
+                        <Label text="PATIENTS" styleClass="stat-label"/>
+                        <Label fx:id="statPatients" text="0" styleClass="stat-value"/>
+                    </VBox>
+                    <VBox styleClass="stat-card">
+                        <Label text="DOCTORS" styleClass="stat-label"/>
+                        <Label fx:id="statDoctors" text="0" styleClass="stat-value"/>
+                    </VBox>
+                    <VBox styleClass="stat-card">
+                        <Label text="APPOINTMENTS" styleClass="stat-label"/>
+                        <Label fx:id="statAppointments" text="0" styleClass="stat-value"/>
+                    </VBox>
+                    <VBox styleClass="stat-card">
+                        <Label text="PENDING" styleClass="stat-label"/>
+                        <Label fx:id="statPending" text="0" styleClass="stat-value"/>
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="20">
+                    <VBox spacing="20" HBox.hgrow="ALWAYS">
+                        <!-- Users -->
+                        <VBox styleClass="card" fx:id="usersSection">
+                            <Label text="👥 All Users" styleClass="card-title"/>
+                            <TableView fx:id="usersTable" styleClass="data-table" prefHeight="220">
+                                <columns>
+                                    <TableColumn text="Name" prefWidth="140"/>
+                                    <TableColumn text="Email" prefWidth="180"/>
+                                    <TableColumn text="Role" prefWidth="90"/>
+                                    <TableColumn text="Gender" prefWidth="60"/>
+                                </columns>
+                            </TableView>
+                            <Button text="🗑 Delete User" styleClass="btn-cancel" onAction="#onDeleteUser"/>
+                        </VBox>
+
+                        <!-- Appointments -->
+                        <VBox styleClass="card" fx:id="appointmentsSection">
+                            <Label text="📅 All Appointments" styleClass="card-title"/>
+                            <TableView fx:id="appointmentsTable" styleClass="data-table" prefHeight="220">
+                                <columns>
+                                    <TableColumn text="Date" prefWidth="95"/>
+                                    <TableColumn text="Time" prefWidth="75"/>
+                                    <TableColumn text="Patient" prefWidth="140"/>
+                                    <TableColumn text="Doctor" prefWidth="140"/>
+                                    <TableColumn text="Status" prefWidth="100"/>
+                                </columns>
+                            </TableView>
+                            <HBox spacing="10">
+                                <Button text="✅ Confirm" styleClass="btn-confirm" onAction="#onConfirmAppointment"/>
+                                <Button text="❌ Cancel Appointment" styleClass="btn-cancel" onAction="#onCancelAppointment"/>
+                            </HBox>
+                        </VBox>
+
+                        <!-- Doctors -->
+                        <VBox styleClass="card" fx:id="doctorsSection">
+                            <Label text="🩺 All Doctors" styleClass="card-title"/>
+                            <TableView fx:id="doctorsTable" styleClass="data-table" prefHeight="200">
+                                <columns>
+                                    <TableColumn text="Name" prefWidth="140"/>
+                                    <TableColumn text="Email" prefWidth="180"/>
+                                    <TableColumn text="License" prefWidth="120"/>
+                                    <TableColumn text="Specializations" prefWidth="180"/>
+                                </columns>
+                            </TableView>
+                        </VBox>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

@@ -1,0 +1,291 @@
+/* =====================================================
+   HEALTH ASSIST — Doctor Dashboard
+   Dark Royal Theme
+   Primary: #7C3AED (purple) · Accent: #F59E0B (yellow)
+   ===================================================== */
+
+.root {
+    -fx-font-family: "Segoe UI", "SF Pro Display", "Inter", sans-serif;
+
+    -primary: #7C3AED;
+    -primary-dark: #6D28D9;
+    -primary-light: #8B5CF6;
+
+    -accent: #F59E0B;
+    -accent-hover: #D97706;
+
+    -bg-main: #0A0A0F;
+    -bg-card: #12121A;
+    -bg-sidebar: #0E0E16;
+
+    -border: #1E1E2E;
+
+    -text-dark: #F0F0F5;
+    -text-medium: #A0A0B8;
+    -text-light: #6B6B80;
+}
+
+.dashboard-root {
+    -fx-background-color: -bg-main;
+}
+
+/* ═══════════════════════════════════════════════════
+   TOP BAR
+   ═══════════════════════════════════════════════════ */
+.topbar {
+    -fx-background-color: #0E0E16;
+    -fx-border-color: -border;
+    -fx-border-width: 0 0 1 0;
+    -fx-pref-height: 60;
+    -fx-alignment: CENTER_LEFT;
+    -fx-effect: dropshadow(gaussian, rgba(124, 58, 237, 0.15), 10, 0, 0, 2);
+}
+
+.topbar-logo {
+    -fx-text-fill: -primary-light;
+    -fx-font-size: 20px;
+    -fx-font-weight: 800;
+}
+
+.topbar-welcome {
+    -fx-text-fill: -text-medium;
+    -fx-font-size: 12px;
+    -fx-font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════════════
+   SIDEBAR
+   ═══════════════════════════════════════════════════ */
+.sidebar {
+    -fx-background-color: -bg-sidebar;
+    -fx-border-color: -border;
+    -fx-border-width: 0 1 0 0;
+    -fx-pref-width: 240;
+    -fx-padding: 24 0 24 0;
+}
+
+.sidebar-nav {
+    -fx-spacing: 4;
+    -fx-padding: 0 12 0 12;
+}
+
+.nav-section {
+    -fx-text-fill: -text-light;
+    -fx-font-size: 10px;
+    -fx-font-weight: 700;
+    -fx-letter-spacing: 1.5px;
+    -fx-padding: 18 16 8 16;
+}
+
+.nav-item-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: -text-dark;
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-padding: 11 14 11 14;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.nav-item-btn:hover {
+    -fx-background-color: rgba(124, 58, 237, 0.1);
+    -fx-text-fill: -primary-light;
+}
+
+.nav-item-active-btn {
+    -fx-background-color: -primary;
+    -fx-text-fill: white;
+    -fx-font-weight: 700;
+}
+
+/* ═══════════════════════════════════════════════════
+   CONTENT
+   ═══════════════════════════════════════════════════ */
+.dashboard-content {
+    -fx-background-color: -bg-main;
+    -fx-spacing: 24;
+    -fx-padding: 30;
+}
+
+/* ═══════════════════════════════════════════════════
+   PAGE HEADER
+   ═══════════════════════════════════════════════════ */
+.page-title {
+    -fx-text-fill: -text-dark;
+    -fx-font-size: 28px;
+    -fx-font-weight: 700;
+}
+
+.page-subtitle {
+    -fx-text-fill: -text-medium;
+    -fx-font-size: 13px;
+}
+
+/* ═══════════════════════════════════════════════════
+   STAT CARDS
+   ═══════════════════════════════════════════════════ */
+.stats-row {
+    -fx-spacing: 18;
+}
+
+.stat-card {
+    -fx-background-color: -bg-card;
+    -fx-background-radius: 18;
+    -fx-border-color: -border;
+    -fx-border-radius: 18;
+    -fx-padding: 22 24 22 24;
+    -fx-pref-width: 220;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0, 0, 2);
+}
+
+.stat-label {
+    -fx-text-fill: -text-light;
+    -fx-font-size: 10px;
+    -fx-font-weight: 700;
+    -fx-letter-spacing: 1.4px;
+}
+
+.stat-value {
+    -fx-text-fill: -primary-light;
+    -fx-font-size: 38px;
+    -fx-font-weight: 800;
+}
+
+/* ═══════════════════════════════════════════════════
+   GENERAL CARDS
+   ═══════════════════════════════════════════════════ */
+.card {
+    -fx-background-color: -bg-card;
+    -fx-background-radius: 18;
+    -fx-border-color: -border;
+    -fx-border-radius: 18;
+    -fx-padding: 22 26 22 26;
+    -fx-spacing: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0, 0, 2);
+}
+
+.card-title {
+    -fx-text-fill: -text-dark;
+    -fx-font-size: 15px;
+    -fx-font-weight: 700;
+}
+
+/* ═══════════════════════════════════════════════════
+   TABLE
+   ═══════════════════════════════════════════════════ */
+.data-table {
+    -fx-background-color: transparent;
+    -fx-table-cell-border-color: transparent;
+}
+
+.data-table .column-header-background {
+    -fx-background-color: #16162A;
+    -fx-border-color: -border;
+}
+
+.data-table .column-header .label {
+    -fx-text-fill: -text-medium;
+    -fx-font-size: 10px;
+    -fx-font-weight: 700;
+}
+
+.data-table .table-row-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: #1A1A30;
+    -fx-border-width: 0 0 1 0;
+}
+
+.data-table .table-row-cell:hover {
+    -fx-background-color: rgba(124, 58, 237, 0.05);
+}
+
+.data-table .table-cell {
+    -fx-text-fill: -text-dark;
+    -fx-font-size: 12px;
+    -fx-padding: 10 14 10 14;
+}
+
+/* ═══════════════════════════════════════════════════
+   BUTTONS
+   ═══════════════════════════════════════════════════ */
+.btn-book,
+.btn-confirm {
+    -fx-background-color: -primary;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-background-radius: 8;
+    -fx-padding: 9 18 9 18;
+    -fx-cursor: hand;
+}
+
+.btn-book:hover,
+.btn-confirm:hover {
+    -fx-background-color: -primary-dark;
+}
+
+.btn-send {
+    -fx-background-color: -accent;
+    -fx-text-fill: #0A0A0F;
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+    -fx-background-radius: 8;
+    -fx-padding: 8 14 8 14;
+    -fx-cursor: hand;
+}
+
+.btn-send:hover {
+    -fx-background-color: -accent-hover;
+}
+
+.btn-cancel,
+.btn-logout {
+    -fx-background-color: #DC2626;
+    -fx-text-fill: white;
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+    -fx-background-radius: 8;
+    -fx-padding: 8 14 8 14;
+    -fx-cursor: hand;
+}
+
+.btn-cancel:hover,
+.btn-logout:hover {
+    -fx-background-color: #B91C1C;
+}
+
+/* ═══════════════════════════════════════════════════
+   PROFILE
+   ═══════════════════════════════════════════════════ */
+.profile-label {
+    -fx-text-fill: -text-light;
+    -fx-font-size: 11px;
+    -fx-font-weight: 600;
+    -fx-min-width: 85;
+}
+
+.profile-value {
+    -fx-text-fill: -text-medium;
+    -fx-font-size: 12px;
+}
+
+/* ═══════════════════════════════════════════════════
+   NOTIFICATIONS
+   ═══════════════════════════════════════════════════ */
+.notification-list {
+    -fx-background-color: transparent;
+}
+
+.notification-list .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: -text-medium;
+    -fx-font-size: 12px;
+    -fx-padding: 10 12 10 12;
+    -fx-border-color: #1A1A30;
+    -fx-border-width: 0 0 1 0;
+}
+
+.notification-list .list-cell:hover {
+    -fx-background-color: rgba(124, 58, 237, 0.05);
+}

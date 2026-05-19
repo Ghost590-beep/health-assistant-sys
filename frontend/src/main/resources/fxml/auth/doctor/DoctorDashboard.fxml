@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import java.net.URL?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.health.ui.controllers.doctor.DoctorDashboardController"
+            styleClass="dashboard-root">
+
+    <stylesheets>
+        <URL value="@/css/doctorDashboard.css"/>
+    </stylesheets>
+
+    <!-- TOP BAR -->
+    <top>
+        <HBox styleClass="topbar" alignment="CENTER_LEFT" spacing="16">
+            <padding><Insets left="24" right="24"/></padding>
+            <Label text="✚ HealthAssist" styleClass="topbar-logo"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="welcomeLabel" styleClass="topbar-welcome"/>
+            <Button text="Logout" styleClass="btn-logout" onAction="#onLogout"/>
+        </HBox>
+    </top>
+
+    <!-- SIDEBAR -->
+    <left>
+        <VBox styleClass="sidebar">
+            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 0 16 20 16;">
+                <Label text="✚" style="-fx-text-fill: #00E6A0; -fx-font-size: 22px; -fx-font-weight: bold;"/>
+                <Label text="HealthAssist" styleClass="topbar-logo"/>
+            </HBox>
+
+            <VBox styleClass="sidebar-nav" spacing="2">
+                <Label text="MAIN" styleClass="nav-section"/>
+                <Button fx:id="navDashboard" text="⌂  Dashboard" styleClass="nav-item-btn, nav-item-active-btn" onAction="#onNavDashboard" maxWidth="Infinity"/>
+                <Button fx:id="navAppointments" text="📅  Appointments" styleClass="nav-item-btn" onAction="#onNavAppointments" maxWidth="Infinity"/>
+
+                <Label text="PATIENTS" styleClass="nav-section"/>
+                <Button fx:id="navPatients" text="👥  My Patients" styleClass="nav-item-btn" onAction="#onNavPatients" maxWidth="Infinity"/>
+                <Button fx:id="navRecords" text="📋  Health Records" styleClass="nav-item-btn" onAction="#onNavRecords" maxWidth="Infinity"/>
+
+                <Label text="ACCOUNT" styleClass="nav-section"/>
+                <Button fx:id="navProfile" text="👤  Profile" styleClass="nav-item-btn" onAction="#onNavProfile" maxWidth="Infinity"/>
+            </VBox>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <VBox style="-fx-padding: 12 16 0 16; -fx-spacing: 2;">
+                <Label fx:id="sidebarUserName" style="-fx-text-fill: #C0C8D8; -fx-font-size: 12px; -fx-font-weight: 600;"/>
+                <Label fx:id="sidebarUserRole" style="-fx-text-fill: #5E687D; -fx-font-size: 10px;"/>
+            </VBox>
+        </VBox>
+    </left>
+
+    <!-- CONTENT -->
+    <center>
+        <ScrollPane fx:id="mainScrollPane" fitToWidth="true" styleClass="content-scroll">
+            <VBox fx:id="dashboardContent" styleClass="dashboard-content">
+
+                <Label fx:id="doctorNameLabel" styleClass="page-title"/>
+                <Label fx:id="specializationLabel" styleClass="page-subtitle"/>
+
+                <!-- Stats Row -->
+                <HBox styleClass="stats-row">
+                    <VBox styleClass="stat-card">
+                        <Label text="TODAY'S APPOINTMENTS" styleClass="stat-label"/>
+                        <Label fx:id="todayCount" text="0" styleClass="stat-value"/>
+                    </VBox>
+                    <VBox styleClass="stat-card">
+                        <Label text="TOTAL PATIENTS" styleClass="stat-label"/>
+                        <Label fx:id="patientCount" text="0" styleClass="stat-value"/>
+                    </VBox>
+                    <VBox styleClass="stat-card">
+                        <Label text="PENDING" styleClass="stat-label"/>
+                        <Label fx:id="pendingCount" text="0" styleClass="stat-value"/>
+                    </VBox>
+                </HBox>
+
+                <!-- Main Grid -->
+                <HBox spacing="20">
+                    <!-- LEFT COLUMN -->
+                    <VBox spacing="20" HBox.hgrow="ALWAYS">
+                        <!-- Appointments -->
+                        <VBox styleClass="card" fx:id="appointmentsSection">
+                            <HBox alignment="CENTER_LEFT" spacing="6">
+                                <Label text="📅 Upcoming Appointments" styleClass="card-title"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <TextField fx:id="searchAppointmentField" promptText="Search..."
+                                           style="-fx-pref-width: 150; -fx-background-radius: 6; -fx-padding: 5 8; -fx-font-size: 11px;"/>
+                                <Button text="🔍" styleClass="btn-confirm" onAction="#onSearchAppointments"/>
+                            </HBox>
+                            <TableView fx:id="appointmentsTable" styleClass="data-table" prefHeight="220">
+                                <columns>
+                                    <TableColumn text="Date" prefWidth="95"/>
+                                    <TableColumn text="Time" prefWidth="75"/>
+                                    <TableColumn text="Patient" prefWidth="150"/>
+                                    <TableColumn text="Reason" prefWidth="140"/>
+                                    <TableColumn text="Status" prefWidth="110"/>
+                                </columns>
+                            </TableView>
+                            <HBox spacing="10" alignment="CENTER_RIGHT">
+                                <Button text="✅ Confirm" styleClass="btn-confirm" onAction="#onConfirmAppointment"/>
+                                <Button text="❌ Cancel" styleClass="btn-cancel" onAction="#onCancelAppointment"/>
+                                <Button text="📋 Add Record" styleClass="btn-book" onAction="#onAddHealthRecord"/>
+                            </HBox>
+                        </VBox>
+
+                        <!-- Patients List -->
+                        <VBox styleClass="card" fx:id="patientsSection">
+                            <Label text="👥 My Patients" styleClass="card-title"/>
+                            <TableView fx:id="patientsTable" styleClass="data-table" prefHeight="220">
+                                <columns>
+                                    <TableColumn text="Name" prefWidth="140"/>
+                                    <TableColumn text="Email" prefWidth="160"/>
+                                    <TableColumn text="Phone" prefWidth="110"/>
+                                    <TableColumn text="Blood Type" prefWidth="90"/>
+                                    <TableColumn text="Appointments" prefWidth="100"/>
+                                </columns>
+                            </TableView>
+                            <HBox spacing="10">
+                                <Button text="👁️ View History" styleClass="btn-book" onAction="#onViewPatientHistory" maxWidth="Infinity"/>
+                                <Button text="📅 Book Appointment" styleClass="btn-confirm" onAction="#onBookForPatient" maxWidth="Infinity"/>
+                            </HBox>
+                        </VBox>
+
+                        <!-- Health Records -->
+                        <VBox styleClass="card" fx:id="recordsSection">
+                            <Label text="📋 Recent Health Records" styleClass="card-title"/>
+                            <TableView fx:id="recordsTable" styleClass="data-table" prefHeight="200">
+                                <columns>
+                                    <TableColumn text="Date" prefWidth="100"/>
+                                    <TableColumn text="Patient" prefWidth="140"/>
+                                    <TableColumn text="Diagnosis" prefWidth="200"/>
+                                    <TableColumn text="Prescription" prefWidth="200"/>
+                                </columns>
+                            </TableView>
+                        </VBox>
+                    </VBox>
+
+                    <!-- RIGHT COLUMN -->
+                    <VBox spacing="20" prefWidth="380">
+                        <!-- Profile -->
+                        <VBox styleClass="card" fx:id="profileSection">
+                            <Label text="👤 My Profile" styleClass="card-title"/>
+                            <VBox spacing="10" style="-fx-padding: 4 0 4 0;">
+                                <HBox spacing="10" alignment="CENTER_LEFT">
+                                    <Label text="License" styleClass="profile-label"/>
+                                    <Label fx:id="profileLicense" styleClass="profile-value"/>
+                                </HBox>
+                                <HBox spacing="10" alignment="CENTER_LEFT">
+                                    <Label text="Experience" styleClass="profile-label"/>
+                                    <Label fx:id="profileExperience" styleClass="profile-value"/>
+                                </HBox>
+                                <HBox spacing="10" alignment="CENTER_LEFT">
+                                    <Label text="Clinic" styleClass="profile-label"/>
+                                    <Label fx:id="profileClinic" styleClass="profile-value" wrapText="true"/>
+                                </HBox>
+                                <HBox spacing="10" alignment="CENTER_LEFT">
+                                    <Label text="Specialization" styleClass="profile-label"/>
+                                    <Label fx:id="profileSpecialization" styleClass="profile-value" wrapText="true"/>
+                                </HBox>
+                                <Region prefHeight="4"/>
+                                <Button text="✏️ Edit Profile" styleClass="btn-book" onAction="#onEditProfile" maxWidth="Infinity"/>
+                            </VBox>
+                        </VBox>
+
+                        <!-- Notifications -->
+                        <VBox styleClass="card" fx:id="notificationsSection">
+                            <HBox alignment="CENTER_LEFT">
+                                <Label text="🔔 Notifications" styleClass="card-title"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Button text="✉ Send" styleClass="btn-send" onAction="#onSendNotification"/>
+                            </HBox>
+                            <ListView fx:id="notificationsList" styleClass="notification-list" prefHeight="180"/>
+                        </VBox>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

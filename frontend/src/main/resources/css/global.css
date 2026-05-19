@@ -1,0 +1,330 @@
+/* =====================================================
+   HEALTH ASSIST — Complete Stylesheet  |  global.css
+   ===================================================== */
+
+* {
+    -fx-font-family: "Segoe UI", "SF Pro Display", Arial, sans-serif;
+}
+
+/* ─────────────────────────────────────────────────────
+   ROOT SCROLL
+   ───────────────────────────────────────────────────── */
+.root-scroll {
+    -fx-background-color: #0a0a0a;
+    -fx-background: #0a0a0a;
+    -fx-padding: 0;
+    -fx-border-width: 0;
+    -fx-focus-traversable: false;
+}
+
+.root-scroll .viewport {
+    -fx-background-color: transparent;
+}
+
+.root-scroll .scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.root-scroll .scroll-bar:vertical .thumb {
+    -fx-background-color: rgba(255, 255, 255, 0.25);
+    -fx-background-radius: 4;
+}
+
+.root-scroll .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.45);
+}
+
+/* ─────────────────────────────────────────────────────
+   ROOT CONTAINER
+   ───────────────────────────────────────────────────── */
+.root-container {
+    -fx-background-color: #0a0a0a;
+    -fx-min-height: 820;
+}
+
+/* ─────────────────────────────────────────────────────
+   BACKGROUND IMAGE
+   ───────────────────────────────────────────────────── */
+.bg-image {
+    -fx-opacity: 1;
+}
+
+/* ─────────────────────────────────────────────────────
+   DARK OVERLAY
+   ───────────────────────────────────────────────────── */
+.bg-overlay {
+    -fx-background-color: rgba(0, 0, 0, 0.52);
+}
+
+/* ─────────────────────────────────────────────────────
+   CENTERING WRAPPER
+   ───────────────────────────────────────────────────── */
+.centering-wrapper {
+    -fx-alignment: CENTER;
+    -fx-background-color: transparent;
+}
+
+/* ─────────────────────────────────────────────────────
+   GLASS PANEL
+   ───────────────────────────────────────────────────── */
+.glass-panel {
+    -fx-background-color: rgba(255, 255, 255, 0.08);
+    -fx-background-radius: 22;
+    -fx-border-radius: 22;
+    -fx-border-color: rgba(255, 255, 255, 0.14);
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.55), 40, 0, 0, 12);
+    -fx-min-width: 280;
+    -fx-pref-width: 420;
+    -fx-max-width: 440;
+}
+
+/* ─────────────────────────────────────────────────────
+   BRAND
+   ───────────────────────────────────────────────────── */
+.brand-logo {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 28px;
+    -fx-font-weight: 800;
+    -fx-alignment: CENTER;
+}
+
+.login-subtitle {
+    -fx-text-fill: rgba(255, 255, 255, 0.65);
+    -fx-font-size: 13px;
+    -fx-alignment: CENTER;
+}
+
+/* ─────────────────────────────────────────────────────
+   FIELD LABELS
+   ───────────────────────────────────────────────────── */
+.field-label {
+    -fx-text-fill: rgba(255, 255, 255, 0.82);
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+}
+
+/* ─────────────────────────────────────────────────────
+   INPUT FIELDS
+   ───────────────────────────────────────────────────── */
+.input-field {
+    -fx-background-color: rgba(255, 255, 255, 0.10);
+    -fx-text-fill: #ffffff;
+    -fx-prompt-text-fill: rgba(255, 255, 255, 0.38);
+    -fx-background-radius: 11;
+    -fx-border-radius: 11;
+    -fx-border-color: rgba(255, 255, 255, 0.18);
+    -fx-border-width: 1;
+    -fx-padding: 12 14 12 14;
+    -fx-font-size: 14px;
+}
+
+.input-field:focused {
+    -fx-border-color: #00D5B0;
+    -fx-background-color: rgba(255, 255, 255, 0.14);
+}
+
+/* ─────────────────────────────────────────────────────
+   PRIMARY BUTTON
+   ───────────────────────────────────────────────────── */
+.btn-primary {
+    -fx-background-color: #00C9A7;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-font-weight: 800;
+    -fx-background-radius: 11;
+    -fx-padding: 13 0 13 0;
+    -fx-cursor: hand;
+}
+
+.btn-primary:hover {
+    -fx-background-color: #00E0BA;
+}
+
+.btn-primary:pressed {
+    -fx-background-color: #00A88A;
+}
+
+.btn-primary:disabled {
+    -fx-background-color: rgba(0, 201, 167, 0.45);
+    -fx-text-fill: rgba(255, 255, 255, 0.60);
+}
+
+/* ─────────────────────────────────────────────────────
+   GOOGLE BUTTON
+   ───────────────────────────────────────────────────── */
+.btn-google {
+    -fx-background-color: rgba(255, 255, 255, 0.94);
+    -fx-background-radius: 11;
+    -fx-padding: 11 0 11 0;
+    -fx-cursor: hand;
+}
+
+.btn-google:hover {
+    -fx-background-color: #ffffff;
+}
+
+.google-logo-text {
+    -fx-text-fill: #4285F4;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.google-btn-text {
+    -fx-text-fill: #333333;
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+}
+
+/* ─────────────────────────────────────────────────────
+   LINKS
+   ───────────────────────────────────────────────────── */
+.hint-text {
+    -fx-text-fill: rgba(255, 255, 255, 0.58);
+    -fx-font-size: 12px;
+}
+
+.link-text {
+    -fx-text-fill: #00D5B0;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+}
+
+.link-text:hover {
+    -fx-text-fill: #00F0C8;
+    -fx-underline: true;
+}
+
+/* ─────────────────────────────────────────────────────
+   DIVIDER
+   ───────────────────────────────────────────────────── */
+.divider-line {
+    -fx-background-color: rgba(255, 255, 255, 0.18);
+    -fx-pref-height: 1;
+}
+
+.divider-text {
+    -fx-text-fill: rgba(255, 255, 255, 0.42);
+    -fx-font-size: 11px;
+}
+
+/* ─────────────────────────────────────────────────────
+   ERROR LABEL
+   ───────────────────────────────────────────────────── */
+.error-label {
+    -fx-text-fill: #FF7B7B;
+    -fx-font-size: 12px;
+    -fx-background-color: rgba(255, 107, 107, 0.12);
+    -fx-background-radius: 8;
+    -fx-padding: 8 10 8 10;
+}
+
+
+/* ─────────────────────────────────────────────────────
+   ROLE TABS
+   ───────────────────────────────────────────────────── */
+.role-tabs {
+    -fx-background-color: rgba(255, 255, 255, 0.06);
+    -fx-background-radius: 10;
+    -fx-padding: 4;
+}
+
+.role-tab {
+    -fx-background-color: transparent;
+    -fx-text-fill: rgba(255, 255, 255, 0.6);
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-background-radius: 8;
+    -fx-padding: 8 18 8 18;
+    -fx-cursor: hand;
+}
+
+.role-tab:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.08);
+    -fx-text-fill: rgba(255, 255, 255, 0.9);
+}
+
+.role-tab:selected {
+    -fx-background-color: #00C9A7;
+    -fx-text-fill: #0D1117;
+    -fx-font-weight: 700;
+}
+
+/* ToggleButton group — only one selected at a time */
+.role-tab:selected .toggle-button {
+    -fx-background-color: #00C9A7;
+}
+
+/* ─────────────────────────────────────────────────────
+   SUCCESS LABEL
+   ───────────────────────────────────────────────────── */
+.success-label {
+    -fx-text-fill: #00C9A7;
+    -fx-font-size: 12px;
+    -fx-background-color: rgba(0, 201, 167, 0.12);
+    -fx-background-radius: 8;
+    -fx-padding: 8 10 8 10;
+}
+
+/* ─────────────────────────────────────────────────────
+   FORM SCROLL (inner scroll for form content)
+   ───────────────────────────────────────────────────── */
+.form-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-padding: 0;
+}
+
+.form-scroll .viewport {
+    -fx-background-color: transparent;
+}
+
+.form-scroll .scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+}
+
+.form-scroll .scroll-bar:vertical .thumb {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-background-radius: 4;
+}
+/* ─────────────────────────────────────────────────────
+   COMBO BOX
+   ───────────────────────────────────────────────────── */
+.combo-box {
+    -fx-background-color: rgba(255, 255, 255, 0.10);
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 11;
+    -fx-border-radius: 11;
+    -fx-border-color: rgba(255, 255, 255, 0.18);
+    -fx-border-width: 1;
+    -fx-font-size: 13px;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: #ffffff;
+    -fx-background-color: transparent;
+}
+
+.combo-box .list-view {
+    -fx-background-color: #1a1a2e;
+}
+
+.combo-box .list-view .list-cell {
+    -fx-text-fill: #ffffff;
+    -fx-padding: 8 12 8 12;
+}
+
+.combo-box .list-view .list-cell:hover {
+    -fx-background-color: rgba(0, 201, 167, 0.3);
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.combo-box .arrow {
+    -fx-background-color: rgba(255, 255, 255, 0.55);
+}
